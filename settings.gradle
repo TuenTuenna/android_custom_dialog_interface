@@ -1,0 +1,2 @@
+rootProject.name='MyCustomDialog_tutorial'
+include ':app'
