@@ -19,6 +19,10 @@ class MyCustomDialog(context: Context,
     //
     private var myCustomDialogInterface: MyCustomDialogInterface? = null
 
+//    var subscribeAction : (() -> Unit)? = null
+    var subscribeAction : ((String) -> Unit)? = null
+    var likeAction : (() -> Unit)? = null
+
     // 인터페이스 연결
     init {
         this.myCustomDialogInterface = myCustomDialogInterface
@@ -47,12 +51,24 @@ class MyCustomDialog(context: Context,
             like_btn -> {
                 Log.d(TAG, "MyCustomDialog - 좋아요 버튼 클릭!")
 
+                this.likeAction?.invoke()
+
+//                if (this.likeAction != null) {
+//                    this.likeAction.invoke()
+//                }
+//
+//                this.likeAction?.let { it() }
+
                 this.myCustomDialogInterface?.onLikeBtnClicked()
             }
 
             // 구독 버튼이 클릭 되었을때
             subscribe_btn -> {
                 Log.d(TAG, "MyCustomDialog - 구독 버튼 클릭!")
+
+                val userInput = user_input.text.toString()
+
+                this.subscribeAction?.invoke(userInput)
 
                 this.myCustomDialogInterface?.onSubscribeBtnClicked()
             }
